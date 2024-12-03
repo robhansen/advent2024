@@ -4,7 +4,6 @@ import sys
 from collections import defaultdict
 
 def is_safe(vals):
-    print(vals)
     increasing = 0
     decreasing = 0
     for i in range(len(vals)-1):
