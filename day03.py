@@ -27,7 +27,7 @@ print("total is {}".format(get_total(instruction_string)))
 dont_splits = instruction_string.split("don't()")
 instruction_string_with_start_stop = dont_splits[0]
 for disabled in dont_splits[1:]:
-    disabled_enabled = disabled.split("do()", 1) # only care about first do()
+    disabled_enabled = disabled.split("do()", 1) # only care about first do() - everything after that is active
     if len(disabled_enabled) > 1:
         instruction_string_with_start_stop += disabled_enabled[1]
 
