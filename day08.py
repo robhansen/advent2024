@@ -16,7 +16,6 @@ def get_antinodes(node1,node2,width,height,enable_harmonics):
         if not enable_harmonics:
             return antinodes
 
-
 if len(sys.argv) != 2:
     print("Help: {} <filename>".format(sys.argv[0]))
     sys.exit(0)
