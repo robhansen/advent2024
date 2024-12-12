@@ -37,4 +37,4 @@ NUM_FUTHER_BLINKS = 50
 for i in range(NUM_FUTHER_BLINKS):
     stones = do_blink(stones)
 
-print("After {} blinks there are {} stones".format(NUM_BLINKS+NUM_FUTHER_BLINKS, sum(stones.values())))
+print("After {} blinks there are {} stones ({} distinct values)".format(NUM_BLINKS+NUM_FUTHER_BLINKS, sum(stones.values()), len(stones.keys())))
