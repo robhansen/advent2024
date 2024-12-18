@@ -113,11 +113,11 @@ class Machine:
         answers = []
         for i in range(initial_a, initial_a+8):
             output = self.run(i)
-            if self.instructions[-len(output):] == output:
+            if self.instructions[-len(output):] == output: # last N instructions match output
                 if len(output)==len(self.instructions):
                     answers.append(i)
                 else:
-                    # do next step
+                    # calculate prior octet
                     answers.extend(self.find_reg_a(i*8))
         return answers
 
