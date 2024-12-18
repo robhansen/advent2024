@@ -111,14 +111,14 @@ class Machine:
 
     def find_reg_a(self, initial_a):
         answers = []
-        for i in range(initial_a, initial_a+8):
-            output = self.run(i)
+        for a in range(initial_a, initial_a+8):
+            output = self.run(a)
             if self.instructions[-len(output):] == output: # last N instructions match output
                 if len(output)==len(self.instructions):
-                    answers.append(i)
+                    answers.append(a)
                 else:
                     # calculate prior octet
-                    answers.extend(self.find_reg_a(i*8))
+                    answers.extend(self.find_reg_a(a*8))
         return answers
 
 with open(sys.argv[1]) as file:
