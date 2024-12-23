@@ -14,7 +14,7 @@ with open(sys.argv[1]) as file:
         computers[comps[0]].add(comps[1])
         computers[comps[1]].add(comps[0])
 
-def add_to_group(list_of_computers_in_group, groups, computers, evaluated):
+def add_to_group(list_of_computers_in_group, computers, evaluated, longest_group):
     group_hash = ",".join(sorted(list_of_computers_in_group))
     if group_hash in evaluated:
         return
@@ -25,18 +25,14 @@ def add_to_group(list_of_computers_in_group, groups, computers, evaluated):
 
     if len(additions_to_group) > 0:
         for addition in additions_to_group:
-            add_to_group(list_of_computers_in_group+[addition], groups, computers, evaluated)
-    elif len(list_of_computers_in_group) > 3: # only bother with ones of size 4 and up, since we know we have lots of groups of 3
-        groups.add(group_hash)
+            add_to_group(list_of_computers_in_group+[addition], computers, evaluated, longest_group)
+    else:
+        if len(group_hash) > len(longest_group[0]):
+            longest_group[0] = group_hash
 
-groups = set()
+longest_group = [""]
 evaluated = set()
 for computer in computers.keys():
-    add_to_group([computer], groups, computers, evaluated)
+    add_to_group([computer], computers, evaluated, longest_group)
 
-longest_group = ""
-for group in groups:
-    if len(group) > len(longest_group):
-        longest_group = group
-
-print("Of the {} groups of 4 or more computers, the longest is {}".format(len(groups), longest_group))
+print("The longest group (and hence the password) is {}".format(longest_group[0]))
